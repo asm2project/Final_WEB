@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f2cebe724b024f1aa179654a1f0aad8b" Name="Diagram1">
+        <EntityTypeShape EntityType="ASMWEBModel.Cours" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMWEBModel.Couse_Cat" Width="1.5" PointX="3.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMWEBModel.Role" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMWEBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMWEBModel.User" Width="1.5" PointX="5.5" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="ASMWEBModel.FK_Couse_Cat_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMWEBModel.FK_Couse_Cat_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMWEBModel.FK_Couse_Cat_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMWEBModel.FK_User_Category" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

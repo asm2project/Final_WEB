@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ASMWEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="Couse_ID" />
+    </Key>
+    <Property Name="Couse_ID" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="CouseName" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Couse_Cat">
+    <Key>
+      <PropertyRef Name="CC_ID" />
+    </Key>
+    <Property Name="CC_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Couse_ID" Type="nchar" MaxLength="50" />
+    <Property Name="Role_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Role_id" />
+    </Key>
+    <Property Name="Role_id" Type="int" Nullable="false" />
+    <Property Name="Role_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fullname" Type="nvarchar" MaxLength="200" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Username" Type="nvarchar" MaxLength="200" />
+    <Property Name="password" Type="nvarchar" MaxLength="200" />
+    <Property Name="ID_Role" Type="int" />
+    <Property Name="is_admin" Type="bit" />
+    <Property Name="is_TrainingStaff" Type="bit" />
+    <Property Name="is_Trainer" Type="bit" />
+    <Property Name="is_Trainee" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Couse_Cat_Courses">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+    <End Role="Couse_Cat" Type="Self.Couse_Cat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Couse_ID" />
+      </Principal>
+      <Dependent Role="Couse_Cat">
+        <PropertyRef Name="Couse_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Couse_Cat_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Couse_Cat" Type="Self.Couse_Cat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Role_id" />
+      </Principal>
+      <Dependent Role="Couse_Cat">
+        <PropertyRef Name="Role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Couse_Cat_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Couse_Cat" Type="Self.Couse_Cat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Couse_Cat">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Category">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Role_id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ID_Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ASMWEBModelStoreContainer">
+    <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Couse_Cat" EntityType="Self.Couse_Cat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Couse_Cat_Courses" Association="Self.FK_Couse_Cat_Courses">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Couse_Cat" EntitySet="Couse_Cat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Couse_Cat_Role" Association="Self.FK_Couse_Cat_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Couse_Cat" EntitySet="Couse_Cat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Couse_Cat_User" Association="Self.FK_Couse_Cat_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Couse_Cat" EntitySet="Couse_Cat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Category" Association="Self.FK_User_Category">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
